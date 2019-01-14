@@ -95,7 +95,7 @@ class ManagePaymentsController extends AdminBaseController
                 'paid_on',
                 function ($row) {
                     if(!is_null($row->paid_on)){
-                        return $row->paid_on->timezone($this->global->timezone)->format('d M, Y H:i');
+                        return $row->paid_on->format($this->global->date_format .' '. $this->global->time_format);
                     }
                 }
             )

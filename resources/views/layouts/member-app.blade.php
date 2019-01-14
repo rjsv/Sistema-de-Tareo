@@ -257,7 +257,7 @@
                     <!-- Logo icon image, you can use font-icon also -->
                         @if(is_null($global->logo))
                         <!--This is dark logo icon-->
-                            <img src="{{ asset('worksuite-logo.png') }}" alt="home" class=" member-logo" />
+                            <img src="{{ asset('Logo_OL.jpg') }}" alt="home" class=" member-logo" />
                         @else
                             <img src="{{ asset('user-uploads/app-logo/'.$global->logo) }}" alt="home"  />
                         @endif
@@ -562,9 +562,9 @@
                 var token = "{{ csrf_token() }}";
 
                 $.easyAjax({
-                    type: 'DELETE',
+                    type: 'POST',
                     url: url,
-                    data: {'_token': token},
+                    data: {'_token': token, '_method': 'DELETE'},
                     success: function (response) {
                         $('#stickyBox_'+id).hide('slow');
                         $("#responsive-modal").modal('hide');

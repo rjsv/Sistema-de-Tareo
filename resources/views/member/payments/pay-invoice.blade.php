@@ -43,7 +43,14 @@
                                 <div class="col-md-12">
                                     <h2>{{ $invoice->invoice_number }}</h2>
                                 </div>
-
+                                @if($invoice->project_id)
+                                    <div class="col-md-12">
+                                        <div class="col-md-4 form-group">
+                                            <label>@lang('modules.invoices.project')</label>
+                                            <h3 class="form-control-static">{{ $invoice->project->project_name }}</h3>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-md-12">
                                     <div class="col-md-4 form-group">
                                         <label>@lang('modules.invoices.amount')</label>

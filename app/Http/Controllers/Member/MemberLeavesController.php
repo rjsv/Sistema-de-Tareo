@@ -147,7 +147,7 @@ class MemberLeavesController extends MemberBaseController
                 return ucfirst($row->type->type_name);
             })
             ->editColumn('leave_date', function($row) {
-                return Carbon::createFromFormat('Y-m-d H:i:s', $row->leave_date)->toFormattedDateString();
+                return Carbon::createFromFormat('Y-m-d H:i:s', $row->leave_date)->format($this->global->date_format);
             })
             ->editColumn('status', function($row) {
                 if($row->status == 'approved') {

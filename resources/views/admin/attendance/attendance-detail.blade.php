@@ -37,10 +37,10 @@
                 @forelse($attendances as $attendance)
                     <tr>
                         <td width="25%" class="al-center bt-border">
-                            {{ $attendance->clock_in_time->timezone($global->timezone)->format('h:i A') }}
+                            {{ $attendance->clock_in_time->timezone($global->timezone)->format($global->time_format) }}
                         </td>
                         <td width="25%" class="al-center bt-border">
-                            @if(!is_null($attendance->clock_out_time)) {{ $attendance->clock_out_time->timezone($global->timezone)->format('h:i A') }} @else - @endif
+                            @if(!is_null($attendance->clock_out_time)) {{ $attendance->clock_out_time->timezone($global->timezone)->format($global->time_format) }} @else - @endif
                         </td>
                         <td class="bt-border" style="padding-bottom: 5px;">
                             <strong>@lang('modules.attendance.clock_in') IP: </strong> {{ $attendance->clock_in_ip }}<br>

@@ -29,22 +29,31 @@
             font-size: 10px !important;
         }
 
+        .panel-wrapper{
+            height: 500px;
+            overflow-y: auto;
+        }
+
     </style>
 @endpush
 
 @section('content')
 
-    <div class="row">
+    <div class="row dashboard-stats">
         @if(\App\ModuleSetting::checkModule('projects'))
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('member.projects.index') }}">
                 <div class="white-box">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalProjects')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="icon-layers text-info"></i></li>
-                            <li class="text-right"><span class="counter">{{ $totalProjects }}</span></li>
-                        </ul>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-info-gradient"><i class="icon-layers"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalProjects')</span><br>
+                            <span class="counter">{{ $totalProjects }}</span>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -54,13 +63,17 @@
         @if(\App\ModuleSetting::checkModule('timelogs'))
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('member.all-time-logs.index') }}">
-                <div class="white-box" style="padding-bottom: 32px">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalHoursLogged')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="icon-clock text-warning"></i></li>
-                            <li class="text-right">{{ $counts->totalHoursLogged }}</li>
-                        </ul>
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-warning-gradient"><i class="icon-clock"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalHoursLogged')</span><br>
+                            <span class="counter">{{ $counts->totalHoursLogged }}</span>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -71,12 +84,16 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('member.all-tasks.index') }}">
                 <div class="white-box">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalPendingTasks')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="ti-alert text-danger"></i></li>
-                            <li class="text-right"><span class="counter">{{ $counts->totalPendingTasks }}</span></li>
-                        </ul>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-danger-gradient"><i class="ti-alert"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalPendingTasks')</span><br>
+                            <span class="counter">{{ $counts->totalPendingTasks }}</span>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -85,12 +102,16 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('member.all-tasks.index') }}">
                 <div class="white-box">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalCompletedTasks')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="ti-check-box text-success"></i></li>
-                            <li class="text-right"><span class="counter">{{ $counts->totalCompletedTasks }}</span></li>
-                        </ul>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-success-gradient"><i class="ti-check-box"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalCompletedTasks')</span><br>
+                            <span class="counter">{{ $counts->totalCompletedTasks }}</span>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -118,9 +139,9 @@
                                 </div>
                                 <div class="col-xs-6">
                                     @if(is_null($currenntClockIn))
-                                        {{ \Carbon\Carbon::now()->timezone($global->timezone)->format('h:i A') }}
+                                        {{ \Carbon\Carbon::now()->timezone($global->timezone)->format($global->time_format) }}
                                     @else
-                                        {{ $currenntClockIn->clock_in_time->timezone($global->timezone)->format('h:i A') }}
+                                        {{ $currenntClockIn->clock_in_time->timezone($global->timezone)->format($global->time_format) }}
                                     @endif
                                 </div>
                                 <div class="col-xs-6">
@@ -130,7 +151,7 @@
                                 @if(!is_null($currenntClockIn) && !is_null($currenntClockIn->clock_out_time))
                                     <div class="col-xs-6 m-t-20">
                                         <label for="">@lang('modules.attendance.clock_out')</label>
-                                        <br>{{ $currenntClockIn->clock_out_time->timezone($global->timezone)->format('h:i A') }}
+                                        <br>{{ $currenntClockIn->clock_out_time->timezone($global->timezone)->format($global->time_format) }}
                                     </div>
                                     <div class="col-xs-6 m-t-20">
                                         <label for="">@lang('modules.attendance.clock_out') IP</label>
@@ -190,7 +211,7 @@
                                     @if(!is_null($task->project_id))
                                         <a href="{{ route('member.projects.show', $task->project_id) }}" class="text-danger">{{ ucwords($task->project->project_name) }}</a>
                                     @endif
-                                    <label class="label label-danger pull-right">{{ $task->due_date->format('d M') }}</label>
+                                    <label class="label label-danger pull-right">{{ $task->due_date->format($global->date_format) }}</label>
                                 </li>
                             @empty
                                 <li class="list-group-item" data-role="task">

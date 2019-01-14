@@ -18,7 +18,7 @@
                 <a href="{{ route('admin.invoices.download', $invoice->id) }}" data-toggle="tooltip" data-original-title="Download" class="btn btn-inverse btn-circle"><i class="fa fa-download"></i></a>
                 &nbsp;&nbsp;
                 <a href="javascript:;" data-toggle="tooltip" data-original-title="Delete" data-invoice-id="{{ $invoice->id }}" class="btn btn-danger btn-circle sa-params"><i class="fa fa-times"></i></a>
-                <span class="m-l-10">{{ $invoice->issue_date->format('d M, y') }}</span>
+                <span class="m-l-10">{{ $invoice->issue_date->format($global->date_format) }}</span>
             </div>
         </div>
     </li>

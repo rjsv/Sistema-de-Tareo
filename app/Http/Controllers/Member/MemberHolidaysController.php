@@ -11,10 +11,12 @@ use App\Http\Requests\Holiday\UpdateRequest;
 use App\Holiday;
 use App\ModuleSetting;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 
 class MemberHolidaysController extends MemberBaseController
 {
@@ -51,9 +53,9 @@ class MemberHolidaysController extends MemberBaseController
 
         foreach ($this->holidays as $holiday) {
             $hol[date('F', strtotime($holiday->date))]['id'][] = $holiday->id;
-            $hol[date('F', strtotime($holiday->date))]['date'][] = date('d F Y', strtotime($holiday->date));
+            $hol[date('F', strtotime($holiday->date))]['date'][] = $holiday->date->format($this->global->date_format);
             $hol[date('F', strtotime($holiday->date))]['ocassion'][] = ($holiday->occassion)? $holiday->occassion : 'Not Define'; ;
-            $hol[date('F', strtotime($holiday->date))]['day'][] = date('D', strtotime($holiday->date));
+            $hol[date('F', strtotime($holiday->date))]['day'][] = $holiday->date->format('D');
         }
         $this->holidaysArray = $hol;
         return View::make('member.holidays.index', $this->data);
@@ -101,9 +103,9 @@ class MemberHolidaysController extends MemberBaseController
      */
     public function show($id)
     {
-        $holiday = Holiday::findOrFail($id);
+        $this->holiday = Holiday::findOrFail($id);
 
-        return View::make('member.holidays.show', compact('holiday'));
+        return view('member.holidays.show', $this->data);
     }
 
     /**
@@ -118,9 +120,9 @@ class MemberHolidaysController extends MemberBaseController
             abort(403);
         }
 
-        $holiday = Holiday::find($id);
+        $this->holiday = Holiday::find($id);
 
-        return View::make('member.holidays.edit', compact('holiday'));
+        return view('member.holidays.edit', $this->data);
     }
 
     /**
@@ -284,5 +286,17 @@ class MemberHolidaysController extends MemberBaseController
 
         }
         return Reply::redirect(route('member.holidays.index'), '<strong>All Sundays</strong> successfully added to the Database');
+    }
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Throwable
+     */
+    public function getCalendarMonth(Request $request){
+        $month = Carbon::createFromFormat('Y-m-d', $request->startDate)->format('m');
+        $this->holidays = Holiday::where(DB::raw('Month(holidays.`date`)'), '=', $month)->get();
+
+        $view = view('admin.holidays.month-wise-holiday', $this->data)->render();
+        return Reply::dataOnly(['data'=> $view]);
     }
 }

@@ -27,12 +27,12 @@
         @if($task->start_date)
         <div class="col-xs-2">
             <label for="">@lang('app.startDate')</label><br>
-            <span class="text-success" >{{ $task->start_date->format('d M, Y') }}</span>
+            <span class="text-success" >{{ $task->start_date->format($global->date_format) }}</span>
         </div>
         @endif
         <div class="col-xs-3">
             <label for="">@lang('app.dueDate')</label><br>
-            <span @if($task->due_date->isPast()) class="text-danger" @endif>{{ $task->due_date->format('d M, Y') }}</span>
+            <span @if($task->due_date->isPast()) class="text-danger" @endif>{{ $task->due_date->format($global->date_format) }}</span>
         </div>
         <div class="col-xs-12 task-description">
             {!! ucfirst($task->description) !!}
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                             <div class="col-xs-11 text-right m-t-10">
-                                <a href="#"  data-type="combodate" data-name="due_date" data-url="{{ route('admin.sub-task.update', $subtask->id) }}"  data-emptytext="@lang('app.dueDate')" class="m-r-10 edit-sub-task-date"  data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-value="@if($subtask->due_date){{ $subtask->due_date->format('Y-m-d') }}@endif" data-pk="{{ $subtask->id }}" data-title="@lang('app.dueDate')">@if($subtask->due_date){{ $subtask->due_date->format('d M, Y') }}@endif</a>
+                                <a href="#"  data-type="combodate" data-name="due_date" data-url="{{ route('admin.sub-task.update', $subtask->id) }}"  data-emptytext="@lang('app.dueDate')" class="m-r-10 edit-sub-task-date"  data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-value="@if($subtask->due_date){{ $subtask->due_date->format('Y-m-d') }}@endif" data-pk="{{ $subtask->id }}" data-title="@lang('app.dueDate')">@if($subtask->due_date){{ $subtask->due_date->format($global->date_format) }}@endif</a>
                             </div>
                         <div class="col-xs-1 m-t-10">
                             <a href="javascript:;" data-sub-task-id="{{ $subtask->id }}" class="btn btn-danger btn-xs delete-sub-task"><i class="fa fa-times"></i></a>

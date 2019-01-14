@@ -8,6 +8,7 @@ use App\Helper\Reply;
 use App\Http\Requests\Settings\UpdateOrganisationSettings;
 use App\Setting;
 use App\Traits\CurrencyExchange;
+use Carbon\Carbon;
 use Hamcrest\Core\Set;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class OrganisationSettingsController extends AdminBaseController
         $this->timezones = \DateTimeZone::listIdentifiers(\DateTimeZone::ALL);
         $setting = Setting::first();
         $this->currencies = Currency::all();
-
+        $this->dateObject = Carbon::now();
         if(!$setting){
             abort(404);
         }
@@ -65,6 +66,8 @@ class OrganisationSettingsController extends AdminBaseController
         $setting->locale = $request->input('locale');
         $setting->latitude = $request->input('latitude');
         $setting->longitude = $request->input('longitude');
+        $setting->date_format = $request->input('date_format');
+        $setting->time_format = $request->input('time_format');
 
         if ($request->hasFile('logo')) {
             $setting->logo = $request->logo->hashName();

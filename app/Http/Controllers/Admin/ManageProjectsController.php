@@ -357,10 +357,10 @@ class ManageProjectsController extends AdminBaseController
                 return '<a href="' . route('admin.projects.show', $row->id) . '">' . ucfirst($row->project_name) . '</a>';
             })
             ->editColumn('start_date', function ($row) {
-                return $row->start_date->format('d M, Y');
+                return $row->start_date->format($this->global->date_format);
             })
             ->editColumn('deadline', function ($row) {
-                return $row->deadline->format('d M, Y');
+                return $row->deadline->format($this->global->date_format);
             })
             ->editColumn('client_id', function ($row) {
                 if(is_null($row->client_id)){

@@ -6,7 +6,7 @@
             <div class="chat-text">
                 <h4>@if($chatDetail->from == $user->id) you @else {{$chatDetail->fromUser->name}} @endif</h4>
                 <p>{{ $chatDetail->message }}</p>
-                <b>{{ $chatDetail->created_at->timezone($global->timezone)->format('d M, h:i A') }}</b>
+                <b>{{ $chatDetail->created_at->timezone($global->timezone)->format($global->date_format.' '. $global->time_format) }}</b>
             </div>
         </div>
     </li>

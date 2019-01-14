@@ -82,6 +82,7 @@ class ManageClientsController extends AdminBaseController
             $client->company_name = $request->company_name;
             $client->address = $request->address;
             $client->website = $request->website;
+            $client->sede = $request->sede;
             $client->note = $request->note;
             $client->skype = $request->skype;
             $client->facebook = $request->facebook;
@@ -180,6 +181,7 @@ class ManageClientsController extends AdminBaseController
         $client->company_name = $request->company_name;
         $client->address = $request->address;
         $client->website = $request->website;
+        $client->sede = $request->sede;
         $client->note = $request->note;
         $client->skype = $request->skype;
         $client->facebook = $request->facebook;
@@ -212,7 +214,7 @@ class ManageClientsController extends AdminBaseController
         $users = User::withoutGlobalScope('active')->join('role_user', 'role_user.user_id', '=', 'users.id')
             ->leftJoin('client_details', 'users.id', '=', 'client_details.user_id')
             ->join('roles', 'roles.id', '=', 'role_user.role_id')
-            ->select('users.id', 'users.name', 'client_details.company_name', 'users.email', 'users.created_at', 'users.status')
+            ->select('users.id', 'users.name', 'client_details.company_name','client_details.sede', 'users.email', 'users.created_at', 'users.status')
             ->where('roles.name', 'client');
 
             if($request->status != 'all' && $request->status != ''){
@@ -245,7 +247,7 @@ class ManageClientsController extends AdminBaseController
             ->editColumn(
                 'created_at',
                 function ($row) {
-                    return Carbon::parse($row->created_at)->format('d F, Y');
+                    return Carbon::parse($row->created_at)->format($this->global->date_format);
                 }
             )
             ->editColumn(
@@ -308,6 +310,7 @@ class ManageClientsController extends AdminBaseController
                 'client_details.company_name',
                 'client_details.address',
                 'client_details.website',
+                'client_details.sede',
                 'users.created_at'
             );
 
@@ -326,7 +329,7 @@ class ManageClientsController extends AdminBaseController
         $exportArray = [];
 
         // Define the Excel spreadsheet headers
-        $exportArray[] = ['ID', 'Name','Email','Mobile','Company Name', 'Address', 'Website', 'Created at'];
+        $exportArray[] = ['ID', 'Name','Email','Mobile','Company Name', 'Address', 'Website', 'Sede', 'Created at'];
 
         // Convert each member of the returned collection into an array,
         // and append it to the payments array.

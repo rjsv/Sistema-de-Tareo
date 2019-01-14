@@ -261,7 +261,7 @@
                     <!-- Logo icon image, you can use font-icon also -->
                         @if(is_null($global->logo))
                         <!--This is dark logo icon-->
-                            <img src="{{ asset('worksuite-logo.png') }}" alt="home" class=" client-logo" />
+                            <img src="{{ asset('Logo_OL.jpg') }}" alt="home" class=" client-logo" />
                         @else
                             <img src="{{ asset('user-uploads/app-logo/'.$global->logo) }}" alt="home" />
                         @endif
@@ -287,9 +287,9 @@
 
                 <li class="dropdown">
                     <select class="selectpicker language-switcher" data-width="fit">
-                        <option value="en" @if($user->locale == "en") selected @endif data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+                        <option value="en" @if($user->locale == "en") selected @endif data-content='<span class="flag-icon flag-icon-us"></span> En'>En</option>
                         @foreach($languageSettings as $language)
-                            <option value="{{ $language->language_code }}" @if($user->locale == $language->language_code) selected @endif  data-content='<span class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ $language->language_name }}'>{{ $language->language_name }}</option>
+                            <option value="{{ $language->language_code }}" @if($user->locale == $language->language_code) selected @endif  data-content='<span class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ $language->language_code }}'>{{ $language->language_code }}</option>
                         @endforeach
                     </select>
                 </li>
@@ -560,9 +560,9 @@
                 var token = "{{ csrf_token() }}";
 
                 $.easyAjax({
-                    type: 'DELETE',
+                    type: 'POST',
                     url: url,
-                    data: {'_token': token},
+                    data: {'_token': token, '_method': 'DELETE'},
                     success: function (response) {
                         $('#stickyBox_'+id).hide('slow');
                         $("#responsive-modal").modal('hide');

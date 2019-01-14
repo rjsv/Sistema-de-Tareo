@@ -105,11 +105,11 @@ class ManageAllTimeLogController extends AdminBaseController
                 return '<a href="'.route('admin.employees.show', $row->user_id).'" target="_blank" >'.ucwords($row->name).'</a>';
             })
             ->editColumn('start_time', function($row){
-                return $row->start_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                return $row->start_time->timezone($this->global->timezone)->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->editColumn('end_time', function($row){
                 if(!is_null($row->end_time)){
-                    return $row->end_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                    return $row->end_time->timezone($this->global->timezone)->format($this->global->date_format.' '.$this->global->time_format);
                 }
                 else{
                     return "<label class='label label-success'>".__('app.active')."</label>";

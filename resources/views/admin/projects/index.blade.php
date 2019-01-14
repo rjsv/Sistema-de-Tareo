@@ -195,7 +195,7 @@
             return "{{ __('messages.noRecordFound') }}";
         }
     });
-
+    $('.select2').val('all');
     $(function() {
         showData();
 

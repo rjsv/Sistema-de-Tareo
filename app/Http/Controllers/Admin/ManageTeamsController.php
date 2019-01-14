@@ -100,7 +100,7 @@ class ManageTeamsController extends AdminBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTeam $request, $id)
     {
         $group = Team::find($id);
         $group->team_name = $request->team_name;

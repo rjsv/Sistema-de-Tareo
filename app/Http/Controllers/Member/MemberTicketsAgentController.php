@@ -139,8 +139,8 @@ class MemberTicketsAgentController extends MemberBaseController
             }
 
         }
-
-        $lastMessage = view('member.tickets.last-message', compact('reply'))->render();
+        $this->reply = $reply;
+        $lastMessage = view('member.tickets.last-message', $this->data)->render();
 
         return Reply::successWithData(__('messages.ticketReplySuccess'), ['lastMessage' => $lastMessage]);
     }
@@ -354,7 +354,8 @@ class MemberTicketsAgentController extends MemberBaseController
                 return ucwords($row->requester->name);
             })
             ->editColumn('created_at', function($row){
-                return $row->created_at->format('d M Y H:i');
+                return $row->created_at->format($this->global->date_format .' '.$this->global->time_format);
+
             })
             ->rawColumns(['others', 'action'])
             ->removeColumn('agent_id')

@@ -117,7 +117,7 @@ class ManageAllInvoicesController extends AdminBaseController
             ->editColumn(
                 'issue_date',
                 function ($row) {
-                    return $row->issue_date->timezone($this->global->timezone)->format('d F, Y');
+                    return $row->issue_date->timezone($this->global->timezone)->format($this->global->date_format);
                 }
             )
             ->rawColumns(['project_name', 'action', 'status', 'invoice_number'])

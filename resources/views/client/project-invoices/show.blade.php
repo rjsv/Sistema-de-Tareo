@@ -77,7 +77,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <a href="{{ route('client.project-invoice.download', $invoice->id) }}" data-toggle="tooltip" data-original-title="Download" class="btn btn-inverse btn-circle"><i class="fa fa-download"></i></a>
-                                                            <span class="m-l-10">{{ $invoice->issue_date->format('d M, y') }}</span>
+                                                            <span class="m-l-10">{{ $invoice->issue_date->format($global->date_format) }}</span>
                                                         </div>
                                                     </div>
                                                 </li>

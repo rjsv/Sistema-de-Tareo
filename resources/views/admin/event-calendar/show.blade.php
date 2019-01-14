@@ -32,13 +32,13 @@
                 <div class="col-xs-6 col-md-3 ">
                     <div class="form-group">
                         <label>@lang('modules.events.startOn')</label>
-                        <p>{{ $event->start_date_time->format('d M, y - h:i A, (l)') }}</p>
+                        <p>{{ $event->start_date_time->format($global->date_format. ' - '.$global->time_format) }}</p>
                     </div>
                 </div>
                 <div class="col-xs-6 col-md-3">
                     <div class="form-group">
                         <label>@lang('modules.events.endOn')</label>
-                        <p>{{ $event->end_date_time->format('d M, y - h:i A, (l)') }}</p>
+                        <p>{{ $event->end_date_time->format($global->date_format. ' - '.$global->time_format) }}</p>
                     </div>
                 </div>
 

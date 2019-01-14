@@ -368,7 +368,7 @@ class ManageTicketsController extends AdminBaseController
                 return ucwords($row->requester->name);
             })
             ->editColumn('created_at', function($row){
-                return $row->created_at->format('d M Y H:i');
+                return $row->created_at->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->rawColumns(['others', 'action'])
             ->removeColumn('agent_id')

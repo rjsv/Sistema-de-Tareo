@@ -154,7 +154,7 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td><a href="{{ route('admin.projects.show', $project->id) }}">{{ ucwords($project->project_name) }}</a></td>
-                                    <td>{{ $project->deadline->format('d M, y') }}</td>
+                                    <td>{{ $project->deadline->format($global->date_format) }}</td>
                                     <td>
                                         <?php
 

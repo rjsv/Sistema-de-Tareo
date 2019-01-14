@@ -111,14 +111,14 @@ class MemberAllTimeLogController extends MemberBaseController
                 }
             })
             ->editColumn('start_time', function($row) {
-                return $row->start_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                return $row->start_time->timezone($this->global->timezone)->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->editColumn('name', function($row){
                 return ucwords($row->name);
             })
             ->editColumn('end_time', function($row){
                 if(!is_null($row->end_time)){
-                    return $row->end_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                    return $row->end_time->timezone($this->global->timezone)->format($this->global->date_format.' '.$this->global->time_format);
                 }
                 else{
                     return "<label class='label label-success'>".__('app.active')."</label>";

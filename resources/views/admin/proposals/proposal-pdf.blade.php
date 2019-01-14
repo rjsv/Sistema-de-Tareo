@@ -287,7 +287,7 @@
 
         <div id="invoice">
             <h1>@lang("modules.proposal.proposal") #{{ $proposal->id }}</h1>
-            <div class="date">@lang("modules.estimates.validTill"): {{ $proposal->valid_till->format("dS M Y") }}</div>
+            <div class="date">@lang("modules.estimates.validTill"): {{ $proposal->valid_till->format($global->date_format) }}</div>
         </div>
 
     </div>

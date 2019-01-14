@@ -94,7 +94,7 @@ class MemberPaymentsController extends MemberBaseController
                 'paid_on',
                 function ($row) {
                     if(!is_null($row->paid_on)){
-                        return $row->paid_on->timezone($this->global->timezone)->format('d M, Y');
+                        return $row->paid_on->format($this->global->date_format .' '. $this->global->time_format);
                     }
                 }
             )
@@ -137,7 +137,7 @@ class MemberPaymentsController extends MemberBaseController
         $payment->amount = round($request->amount,2);
         $payment->gateway = $request->gateway;
         $payment->transaction_id = $request->transaction_id;
-        $payment->paid_on = Carbon::createFromFormat('m/d/Y H:i', $request->paid_on)->format('Y-m-d H:i:s');
+        $payment->paid_on = Carbon::createFromFormat('m/d/Y', $request->paid_on)->format('Y-m-d H:i:s');
         $payment->remarks = $request->remarks;
         $payment->save();
 
@@ -181,7 +181,7 @@ class MemberPaymentsController extends MemberBaseController
         $payment->amount = round($request->amount, 2);
         $payment->gateway = $request->gateway;
         $payment->transaction_id = $request->transaction_id;
-        $payment->paid_on = Carbon::createFromFormat('m/d/Y H:i', $request->paid_on)->format('Y-m-d H:i:s');
+        $payment->paid_on = Carbon::createFromFormat('m/d/Y', $request->paid_on)->format('Y-m-d H:i:s');
         $payment->status = 'complete';
         $payment->save();
 

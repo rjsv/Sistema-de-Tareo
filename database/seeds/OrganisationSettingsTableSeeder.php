@@ -18,10 +18,10 @@ class OrganisationSettingsTableSeeder extends Seeder
         $currency = Currency::where('currency_code', 'USD')->first();
 
         $setting = new Setting();
-        $setting->company_name = 'Worksuite';
-        $setting->company_email = 'company@email.com';
+        $setting->company_name = 'Backus';
+        $setting->company_email = 'informes@backus.com.pe';
         $setting->company_phone = '1234567891';
-        $setting->address = 'Company address';
+        $setting->address = 'La variante';
         $setting->website = 'www.domain.com';
         $setting->currency_id = $currency->id;
         $setting->timezone = 'Asia/Kolkata';

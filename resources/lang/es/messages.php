@@ -173,7 +173,7 @@ return array (
   'noPendingLeaves' => 'No quedan hojas pendientes.',
   'updateAlert' => 'No haga clic en el botón actualizar ahora si la aplicación está personalizada. Sus cambios se perderán.',
   'updateBackupNotice' => 'Haga una copia de seguridad de los archivos y la base de datos antes de actualizar.',
-  'noRecordFound' => 'Ningún record fue encontrado.',
+  'noRecordFound' => 'Ningún registro fue encontrado.',
   'atleastOneValidation' => 'Elija al menos 1',
   'notificationRead' => 'Notificación marcada como leída',
   'chooseProject' => 'Elige un proyecto.',
@@ -183,4 +183,5 @@ return array (
   'productAdded' => 'Producto agregado con éxito.',
   'productUpdated' => 'Producto actualizado con éxito.',
   'productDeleted' => 'Producto eliminado con éxito.',
+  'noTaskCategory' => 'No se ha encontrado ninguna categoría de tarea',
 );

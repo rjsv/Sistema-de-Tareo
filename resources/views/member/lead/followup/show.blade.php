@@ -76,7 +76,7 @@
                                         <div class="list-group" id="listGroup" style="max-height: 400px; overflow-y: auto;">
                                             @forelse($lead->follow as $follow)
                                                 <a href="javascript:;" data-follow-id="{{ $follow->id }}" class="list-group-item edit-task">
-                                                    <h4 class="list-group-item-heading sbold">@lang('app.createdOn'): {{ $follow->created_at->toFormattedDateString() }}</h4>
+                                                    <h4 class="list-group-item-heading sbold">@lang('app.createdOn'): {{ $follow->created_at->format($global->date_format) }}</h4>
                                                     <p class="list-group-item-text">
                                                     <div class="row margin-top-5">
                                                         <div class="col-md-12">
@@ -88,7 +88,7 @@
                                                         <div class="col-md-6">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            @lang('app.next_follow_up'): {{ $follow->next_follow_up_date->toFormattedDateString() }}
+                                                            @lang('app.next_follow_up'): {{ $follow->next_follow_up_date->format($global->date_format) }}
                                                         </div>
                                                     </div>
                                                     </p>

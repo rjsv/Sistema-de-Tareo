@@ -46,7 +46,9 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <a href="{{ route('admin.clients.create') }}" class="btn btn-outline btn-success btn-sm">@lang('modules.client.addNewClient') <i class="fa fa-plus" aria-hidden="true"></i></a>
+                            @if($user->role[1]->role_id != 4)
+                                <a href="{{ route('admin.clients.create') }}" class="btn btn-outline btn-success btn-sm">@lang('modules.client.addNewClient') <i class="fa fa-plus" aria-hidden="true"></i></a>
+                            @endif
                             <a href="javascript:;" id="toggle-filter" class="btn btn-outline btn-danger btn-sm toggle-filter"><i
                                         class="fa fa-sliders"></i> @lang('app.filterResults')</a>
                         </div>
@@ -102,6 +104,7 @@
                         <th>@lang('app.id')</th>
                         <th>@lang('app.name')</th>
                         <th>@lang('modules.client.companyName')</th>
+                        <th>@lang('modules.client.companySede')</th>
                         <th>@lang('app.email')</th>
                         <th>@lang('app.status')</th>
                         <th>@lang('app.createdAt')</th>
@@ -194,6 +197,7 @@
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'name'},
                         {data: 'company_name', name: 'company_name'},
+                        {data: 'sede', name: 'sede'},
                         {data: 'email', name: 'email'},
                         {data: 'status', name: 'status'},
                         {data: 'created_at', name: 'created_at'},

@@ -54,7 +54,7 @@ class ClientEstimateController extends ClientBaseController
             ->editColumn(
                 'valid_till',
                 function ($row) {
-                    return Carbon::parse($row->valid_till)->format('d F, Y');
+                    return Carbon::parse($row->valid_till)->format($this->global->date_format);
                 }
             )
             ->rawColumns([ 'action', 'status'])

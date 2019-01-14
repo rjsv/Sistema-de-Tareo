@@ -14,3 +14,4 @@ Homestead.yaml
 /public/plugins/bower_components/jquery-steps-master/nuget/NuGet.exe
 .phpintel/
 /storage/legal
+.htaccess

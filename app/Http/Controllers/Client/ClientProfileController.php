@@ -124,6 +124,7 @@ class ClientProfileController extends ClientBaseController
             $client->user_id = $user->id;
         }
         $client->address = $request->address;
+        $client->sede = $request->sede;
         $client->company_name = $request->company_name;
         $client->website = $request->website;
         $client->save();

@@ -92,8 +92,8 @@ class AdminDashboardController extends AdminBaseController
 
         $locale = strtolower($this->global->locale);
 
-        if($locale == 'pt-br'){
-            $locale = 'en';
+        if($locale == 'pt-br' || $locale == 'vn'){
+            $locale = 'es';
         }
 
         if(!is_null($this->global->latitude)){

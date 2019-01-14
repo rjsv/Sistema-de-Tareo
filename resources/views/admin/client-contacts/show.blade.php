@@ -76,7 +76,7 @@
                                     @elseif($field->type == 'checkbox')
                                         {{ $field->values[$clientDetail->custom_fields_data['field_'.$field->id]] }}
                                     @elseif($field->type == 'date')
-                                        {{ isset($clientDetail->dob)?Carbon\Carbon::parse($clientDetail->dob)->format('Y-m-d'):Carbon\Carbon::now()->format('m/d/Y')}}
+                                        {{ isset($clientDetail->dob)?Carbon\Carbon::parse($clientDetail->dob)->format($global->date_format):Carbon\Carbon::now()->format($global->date_format)}}
                                     @endif
                                 </p>
 

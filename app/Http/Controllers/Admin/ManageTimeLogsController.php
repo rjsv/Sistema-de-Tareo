@@ -88,11 +88,11 @@ class ManageTimeLogsController extends AdminBaseController
                       data-toggle="tooltip" data-time-id="'.$row->id.'" data-original-title="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>';
             })
             ->editColumn('start_time', function($row){
-                return $row->start_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                return $row->start_time->timezone($this->global->timezone)->format($this->global->date_format.' '. $this->global->time_format);
             })
             ->editColumn('end_time', function($row){
                 if(!is_null($row->end_time)){
-                    return $row->end_time->timezone($this->global->timezone)->format('d M, Y h:i A');
+                    return $row->end_time->timezone($this->global->timezone)->format($this->global->date_format.' '.$this->global->time_format);
                 }
                 else{
                     return "<label class='label label-success'>".__('app.active')."</label>";

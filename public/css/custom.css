@@ -165,9 +165,12 @@
 }
 
 .language-switcher .dropdown-toggle, .language-switcher .dropdown-toggle:hover, .language-switcher .dropdown-toggle:focus, .language-switcher .dropdown-toggle:active{
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent;
     font-weight: 200;
     color: #FFFFFF;
+    border:none;
+    width: 83%;
+    padding-right: 0;
 }
 
 .datepicker-dropdown{
@@ -269,6 +272,10 @@
     padding-bottom: 15px !important;
 }
 
+.p-12{
+    padding: 12px !important;
+}
+
 @media (min-width: 992px) {
     .container-scroll > .container-row {
         overflow-x: auto;
@@ -300,8 +307,39 @@
     margin-top: 24px;
 }
 
+
+.widget-title{
+    font-size: 13px !important;
+    color: #2b2b2b;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+}
+
 .two-part li span, .two-part li i{
-    font-size: 25px;
+    font-size: 17px;
+}
+
+.dashboard-stats .white-box{
+    padding: 25px 12px;
+}
+
+.dashboard-stats .col-sm-3 div{
+    margin-top: 16px;
+}
+
+.dashboard-stats .col-sm-3 i{
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
+.dashboard-stats .col-sm-9 .counter {
+    font-size: 20px;
+}
+
+.dashboard-stats .col-sm-3 span{
+    padding: 18px;
+    border-radius: 50%;
 }
 
 .permission-section{
@@ -310,7 +348,7 @@
 }
 
 .role-members{
-    padding-bottom: 16px !important;
+    padding-bottom: 19px !important;
     padding-top: 17px !important;
 }
 
@@ -479,11 +517,12 @@ ul.thumbnails.image_picker_selector li{
 
 
 /*New custom reset css*/
-/*@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-/*body {*/
-    /*font-family: 'Roboto', sans-serif;*/
-/*}*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
 
 .white-box{
     border-radius: 2px;
@@ -533,4 +572,33 @@ ul.thumbnails.image_picker_selector li{
 }
 .checkbox-inline+.checkbox-inline, .radio-inline+.radio-inline{
     margin-left: 0;
+}
+
+.bg-title{
+    padding: 5px 15px 3px;
+}
+
+.bg-title h4{
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.bg-success-gradient{
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.bg-danger-gradient{
+    background-image: linear-gradient(to right, #fa709a 0%, #fe8f40 100%);
+}
+
+.bg-warning-gradient{
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.bg-info-gradient{
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+.bg-inverse-gradient{
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
 }

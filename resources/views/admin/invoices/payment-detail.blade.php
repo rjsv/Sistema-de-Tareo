@@ -8,7 +8,7 @@
             <div class="col-xs-12">
                 @forelse($invoice->payment as $payment)
                     <div class="list-group-item edit-task">
-                        <h5 class="list-group-item-heading sbold">@lang('app.paymentOn'): {{ $payment->paid_on->toFormattedDateString() }}</h5>
+                        <h5 class="list-group-item-heading sbold">@lang('app.paymentOn'): {{ $payment->paid_on->format($global->date_format) }}</h5>
                         <p class="list-group-item-text">
                         <div class="row margin-top-5">
                             <div class="col-md-4">

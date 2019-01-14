@@ -34,12 +34,17 @@
         font-size: 10px !important;
     }
 
+    .panel-wrapper{
+        height: 500px;
+        overflow-y: auto;
+    }
+
 </style>
 @endpush
 
 @section('content')
 
-    <div class="row">
+    <div class="row dashboard-stats">
 
         @if(isset($lastVersion))
         <div class="alert alert-info col-md-12">
@@ -53,12 +58,16 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('admin.clients.index') }}">
                 <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalClients')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="icon-user text-success"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalClients }}</span></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <span class="bg-success-gradient"><i class="icon-user"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                        <span class="widget-title"> @lang('modules.dashboard.totalClients')</span><br>
+                        <span class="counter">{{ $counts->totalClients }}</span>
+                    </div>
                 </div>
                 </div>
             </a>
@@ -69,13 +78,17 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('admin.employees.index') }}">
                 <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalEmployees')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="icon-people text-warning"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalEmployees }}</span></li>
-                    </ul>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-warning-gradient"><i class="icon-people"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalEmployees')</span><br>
+                            <span class="counter">{{ $counts->totalEmployees }}</span>
+                        </div>
+                    </div>
                 </div>
             </a>
         </div>
@@ -85,13 +98,17 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('admin.projects.index') }}">
                 <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalProjects')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="icon-layers text-danger"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalProjects }}</span></li>
-                    </ul>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-danger-gradient"><i class="icon-layers"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalProjects')</span><br>
+                            <span class="counter">{{ $counts->totalProjects }}</span>
+                        </div>
+                    </div>
                 </div>
             </a>
         </div>
@@ -101,13 +118,17 @@
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('admin.all-invoices.index') }}">
                 <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalUnpaidInvoices')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="ti-receipt text-inverse"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalUnpaidInvoices }}</span></li>
-                    </ul>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-inverse-gradient"><i class="ti-receipt"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalUnpaidInvoices')</span><br>
+                            <span class="counter">{{ $counts->totalUnpaidInvoices }}</span>
+                        </div>
+                    </div>
                 </div>
             </a>
         </div>
@@ -115,15 +136,21 @@
 
         @if(\App\ModuleSetting::checkModule('timelogs'))
             <div class="col-md-3 col-sm-6">
-                <div class="white-box" style="padding-bottom:32px">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalHoursLogged')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="icon-clock text-info"></i></li>
-                        <li class="text-right">{{ $counts->totalHoursLogged }}</li>
-                    </ul>
+                <a href="{{ route('admin.all-time-logs.index') }}">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-info-gradient"><i class="icon-clock"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalHoursLogged')</span><br>
+                            <span style="font-size: 20px;">{{ $counts->totalHoursLogged }}</span>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                </a>
             </div>
         @endif
 
@@ -131,13 +158,17 @@
             <div class="col-md-3 col-sm-6">
                 <a href="{{ route('admin.all-tasks.index') }}">
                     <div class="white-box">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalPendingTasks')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="ti-alert text-warning"></i></li>
-                            <li class="text-right"><span class="counter">{{ $counts->totalPendingTasks }}</span></li>
-                        </ul>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>
+                                    <span class="bg-warning-gradient"><i class="ti-alert"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9 text-right">
+                                <span class="widget-title"> @lang('modules.dashboard.totalPendingTasks')</span><br>
+                                <span class="counter">{{ $counts->totalPendingTasks }}</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -147,13 +178,17 @@
             <div class="col-md-3 col-sm-6">
                 <a href="{{ route('admin.all-tasks.index') }}">
                     <div class="white-box">
-                    <div class="col-in row">
-                        <h3 class="box-title">@lang('modules.dashboard.totalCompletedTasks')</h3>
-                        <ul class="list-inline two-part">
-                            <li><i class="ti-check-box text-success"></i></li>
-                            <li class="text-right"><span class="counter">{{ $counts->totalCompletedTasks }}</span></li>
-                        </ul>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>
+                                    <span class="bg-success-gradient"><i class="ti-check-box"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9 text-right">
+                                <span class="widget-title"> @lang('modules.dashboard.totalCompletedTasks')</span><br>
+                                <span class="counter">{{ $counts->totalCompletedTasks }}</span>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -161,15 +196,21 @@
 
         @if(\App\ModuleSetting::checkModule('attendance'))
             <div class="col-md-3 col-sm-6">
+                <a href="{{ route('admin.attendances.index') }}">
                 <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalTodayAttendance')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="fa fa-percent text-danger"></i></li>
-                        <li class="text-right"><span class="counter">@if($counts->totalEmployees > 0){{ round((($counts->totalTodayAttendance/$counts->totalEmployees)*100), 2) }}@else 0 @endif</span></li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <span class="bg-danger-gradient"><i class="fa fa-percent"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 text-right">
+                            <span class="widget-title"> @lang('modules.dashboard.totalTodayAttendance')</span><br>
+                            <span class="counter">@if($counts->totalEmployees > 0){{ round((($counts->totalTodayAttendance/$counts->totalEmployees)*100), 2) }}@else 0 @endif</span>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                </a>
             </div>
         @endif
     </div>
@@ -179,15 +220,19 @@
         <div class="col-md-6">
             <div class="row">
                 @if(\App\ModuleSetting::checkModule('tickets'))
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12 dashboard-stats">
                         <a href="{{ route('admin.tickets.index') }}">
                         <div class="white-box">
-                            <div class="col-in row">
-                                <h3 class="box-title">@lang('modules.tickets.totalResolvedTickets')</h3>
-                                <ul class="list-inline two-part">
-                                    <li><i class="ti-ticket text-success"></i></li>
-                                    <li class="text-right"><span class="counter">{{ floor($counts->totalResolvedTickets) }}</span></li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div>
+                                        <span class="bg-success-gradient"><i class="ti-ticket"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9 text-right">
+                                    <span class="widget-title"> @lang('modules.tickets.totalResolvedTickets')</span><br>
+                                    <span class="counter">{{ floor($counts->totalResolvedTickets) }}</span>
+                                </div>
                             </div>
                         </div>
                         </a>
@@ -195,15 +240,19 @@
                 @endif
 
                 @if(\App\ModuleSetting::checkModule('tickets'))
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12 dashboard-stats">
                         <a href="{{ route('admin.tickets.index') }}">
                             <div class="white-box">
-                                <div class="col-in row">
-                                    <h3 class="box-title">@lang('modules.tickets.totalUnresolvedTickets')</h3>
-                                    <ul class="list-inline two-part">
-                                        <li><i class="ti-ticket text-danger"></i></li>
-                                        <li class="text-right"><span class="counter">{{ $counts->totalUnResolvedTickets }}</span></li>
-                                    </ul>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div>
+                                            <span class="bg-danger-gradient"><i class="ti-ticket"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9 text-right">
+                                        <span class="widget-title"> @lang('modules.tickets.totalUnresolvedTickets')</span><br>
+                                        <span class="counter">{{ floor($counts->totalUnResolvedTickets) }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -247,12 +296,12 @@
                             <div class="carousel-inner ">
                                 @forelse($feedbacks as $key=>$feedback)
                                     <div class="@if($key == 0) active @endif item">
-                                        <h4 class="text-white">{!! substr($feedback->feedback,0,70).'...' !!}</h4>
+                                        <h5 class="text-white">{!! substr($feedback->feedback,0,70).'...' !!}</h5>
                                         <div class="twi-user">
                                             {!!  ($feedback->client->image) ? '<img src="'.asset('user-uploads/avatar/'.$feedback->client->image).'"
                                                                         alt="user" class="img-circle img-responsive pull-left">' : '<img src="'.asset('default-profile-2.png').'"
                                                                         alt="user" class="img-circle img-responsive pull-left">' !!}
-                                            <h4 class="text-white m-b-0">{{ ucwords($feedback->client->name) }}</h4>
+                                            <h5 class="text-white m-b-0">{{ ucwords($feedback->client->name) }}</h5>
                                             <p class="text-white">{{ ucwords($feedback->project_name) }}</p>
                                         </div>
                                     </div>
@@ -275,13 +324,9 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="white-box">
-                        <h3 class="box-title">@lang('modules.dashboard.recentEarnings')</h3>
-                        <ul class="list-inline text-right">
-                            <li>
-                                <h5><i class="fa fa-circle m-r-5" style="color: #e20b0b;"></i>@lang('modules.dashboard.recentEarnings')</h5>
-                            </li>
-                        </ul>
-                        <div id="morris-area-chart" style="height: 340px;"></div>
+                        <h3 class="box-title m-b-0">@lang('modules.dashboard.recentEarnings')</h3>
+
+                        <div id="morris-area-chart" style="height: 190px;"></div>
                         <h6 style="line-height: 2em;"><span class=" label label-danger">@lang('app.note'):</span> @lang('messages.earningChartNote') <a href="{{ route('admin.settings.index') }}"><i class="fa fa-arrow-right"></i></a></h6>
                     </div>
                 </div>
@@ -352,7 +397,7 @@
                                                 <a href="{{ route('admin.projects.show', $task->project_id) }}" class="text-danger">{{ ucwords($task->project->project_name) }}</a>
                                             @endif
                                         </div>
-                                        <label class="label label-danger pull-right col-xs-3">{{ $task->due_date->format('d M') }}</label>
+                                        <label class="label label-danger pull-right col-xs-3">{{ $task->due_date->format($global->date_format) }}</label>
                                     </li>
                                 @empty
                                     <li class="list-group-item" data-role="task">
@@ -385,7 +430,7 @@
                                             <a href="{{ route('admin.leads.show', $follows->lead_id) }}" class="text-danger">{{ ucwords($follows->lead->company_name) }}</a>
 
                                         </div>
-                                        <label class="label label-danger pull-right col-xs-3">{{ $follows->next_follow_up_date->format('d M') }}</label>
+                                        <label class="label label-danger pull-right col-xs-3">{{ $follows->next_follow_up_date->format($global->date_format) }}</label>
                                     </li>
                                 @empty
                                     <li class="list-group-item" data-role="task">

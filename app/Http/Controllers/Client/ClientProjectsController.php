@@ -161,10 +161,10 @@ class ClientProjectsController extends ClientBaseController
                 return '<a href="'.route('client.projects.show', $row->id).'">'.ucfirst($row->project_name).'</a>';
             })
             ->editColumn('start_date', function($row){
-                return $row->start_date->format('d M, Y');
+                return $row->start_date->format($this->global->date_format);
             })
             ->editColumn('deadline', function($row){
-                return $row->deadline->format('d M, Y');
+                return $row->deadline->format($this->global->date_format);
             })
             ->editColumn('completion_percent', function ($row) {
                 if ($row->completion_percent < 50) {

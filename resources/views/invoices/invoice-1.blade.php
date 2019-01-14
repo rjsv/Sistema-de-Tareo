@@ -24,7 +24,7 @@
             color: #555555;
             background: #FFFFFF;
             font-size: 14px;
-            font-family: 'DejaVu Sans', sans-serif;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
         }
 
         h2 {

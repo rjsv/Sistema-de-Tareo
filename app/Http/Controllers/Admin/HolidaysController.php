@@ -12,10 +12,12 @@ use App\Holiday;
 use App\ModuleSetting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 
 class HolidaysController extends AdminBaseController
 {
@@ -52,9 +54,9 @@ class HolidaysController extends AdminBaseController
 
         foreach ($this->holidays as $holiday) {
             $hol[date('F', strtotime($holiday->date))]['id'][] = $holiday->id;
-            $hol[date('F', strtotime($holiday->date))]['date'][] = date('d F Y', strtotime($holiday->date));
-            $hol[date('F', strtotime($holiday->date))]['ocassion'][] = ($holiday->occassion)? $holiday->occassion : 'Not Define'; ;
-            $hol[date('F', strtotime($holiday->date))]['day'][] = date('D', strtotime($holiday->date));
+            $hol[date('F', strtotime($holiday->date))]['date'][] = $holiday->date->format($this->global->date_format);
+            $hol[date('F', strtotime($holiday->date))]['ocassion'][] = ($holiday->occassion)? $holiday->occassion : 'Not Define';
+            $hol[date('F', strtotime($holiday->date))]['day'][] = $holiday->date->format('D');
         }
         $this->holidaysArray = $hol;
         return View::make('admin.holidays.index', $this->data);
@@ -94,9 +96,9 @@ class HolidaysController extends AdminBaseController
      */
     public function show($id)
     {
-        $holiday = Holiday::findOrFail($id);
+        $this->holiday = Holiday::findOrFail($id);
 
-        return View::make('admin.holidays.show', compact('holiday'));
+        return view('admin.holidays.show', $this->data);
     }
 
     /**
@@ -196,6 +198,19 @@ class HolidaysController extends AdminBaseController
         return view('admin.holidays.holiday-calendar', $this->data);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Throwable
+     */
+    public function getCalendarMonth(Request $request){
+        $month = Carbon::createFromFormat('Y-m-d', $request->startDate)->format('m');
+        $this->holidays = Holiday::where(DB::raw('Month(holidays.`date`)'), '=', $month)->get();
+
+        $view = view('admin.holidays.month-wise-holiday', $this->data)->render();
+        return Reply::dataOnly(['data'=> $view]);
+    }
+
     public function markHoliday()
     {
         $this->days = [
@@ -247,7 +262,6 @@ class HolidaysController extends AdminBaseController
         if($request->office_holiday_days != null && count($request->office_holiday_days) > 0){
             foreach($request->office_holiday_days as $holiday){
                 $year = Carbon::now()->format('Y');
-//                dd($this->days[($holiday-1)], $holiday);
                 $daysss[] = $this->days[($holiday-1)];
                 $day = $holiday;
                 if($holiday == 7){

@@ -74,9 +74,9 @@ class ManageAllTasksController extends AdminBaseController
             })
             ->editColumn('due_date', function($row){
                 if($row->due_date->isPast()) {
-                    return '<span class="text-danger">'.$row->due_date->format('d M, y').'</span>';
+                    return '<span class="text-danger">'.$row->due_date->format($this->global->date_format).'</span>';
                 }
-                return '<span class="text-success">'.$row->due_date->format('d M, y').'</span>';
+                return '<span class="text-success">'.$row->due_date->format($this->global->date_format).'</span>';
             })
             ->editColumn('name', function($row){
                 return ($row->image) ? '<img src="'.asset('user-uploads/avatar/'.$row->image).'"

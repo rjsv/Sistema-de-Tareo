@@ -29,21 +29,30 @@
             font-size: 10px !important;
         }
 
+        .panel-wrapper{
+            height: 500px;
+            overflow-y: auto;
+        }
+
     </style>
 @endpush
 
 @section('content')
 
-    <div class="row">
+    <div class="row dashboard-stats">
         @if(\App\ModuleSetting::checkModule('projects'))
         <div class="col-md-3 col-sm-6">
             <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.dashboard.totalProjects')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="icon-layers text-info"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalProjects }}</span></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <span class="bg-info-gradient"><i class="icon-layers"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                        <span class="widget-title"> @lang('modules.dashboard.totalProjects')</span><br>
+                        <span class="counter">{{ $counts->totalProjects }}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,12 +61,16 @@
         @if(\App\ModuleSetting::checkModule('tickets'))
         <div class="col-md-3 col-sm-6">
             <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang('modules.tickets.totalUnresolvedTickets')</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="ti-ticket text-warning"></i></li>
-                        <li class="text-right"><span class="counter">{{ $counts->totalUnResolvedTickets }}</span></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <span class="bg-warning-gradient"><i class="ti-ticket"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                        <span class="widget-title"> @lang('modules.tickets.totalUnresolvedTickets')</span><br>
+                        <span class="counter">{{ $counts->totalUnResolvedTickets }}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,24 +79,33 @@
         @if(\App\ModuleSetting::checkModule('invoices'))
         <div class="col-md-3 col-sm-6">
             <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang("modules.dashboard.totalPaidAmount")</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="fa fa-money text-success"></i></li>
-                        <li class="text-right"><span class="counter">{{ floor($counts->totalPaidAmount) }}</span></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <span class="bg-success-gradient"><i class="ti-ticket"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                        <span class="widget-title"> @lang('modules.dashboard.totalPaidAmount')</span><br>
+                        <span class="counter">{{ floor($counts->totalPaidAmount) }}</span>
+                    </div>
                 </div>
+
             </div>
         </div>
 
         <div class="col-md-3 col-sm-6">
             <div class="white-box">
-                <div class="col-in row">
-                    <h3 class="box-title">@lang("modules.dashboard.totalOutstandingAmount")</h3>
-                    <ul class="list-inline two-part">
-                        <li><i class="fa fa-money text-danger"></i></li>
-                        <li class="text-right"><span class="counter">{{ floor($counts->totalUnpaidAmount) }}</span></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <span class="bg-danger-gradient"><i class="ti-ticket"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 text-right">
+                        <span class="widget-title"> @lang('modules.dashboard.totalOutstandingAmount')</span><br>
+                        <span class="counter">{{ floor($counts->totalUnpaidAmount) }}</span>
+                    </div>
                 </div>
             </div>
         </div>

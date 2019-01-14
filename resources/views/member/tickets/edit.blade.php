@@ -55,7 +55,7 @@
                                 <div class="col-md-12">
                                     <h4 class="text-capitalize">{{ $ticket->subject }}</h4>
 
-                                    <div class="font-12">{{ $ticket->created_at->toDayDateTimeString() }} &bull; {{ ucwords($ticket->requester->name). ' <'.$ticket->requester->email.'>' }}</div>
+                                    <div class="font-12">{{ $ticket->created_at->format($global->date_format .' '.$global->time_format) }} &bull; {{ ucwords($ticket->requester->name). ' <'.$ticket->requester->email.'>' }}</div>
                                 </div>
 
                                 {!! Form::hidden('status', $ticket->status, ['id' => 'status']) !!}
@@ -85,7 +85,7 @@
                                                         href="{{ route('admin.clients.show', $reply->user_id) }}"
                                                         @endif
                                                         class="text-inverse">{{ ucwords($reply->user->name) }} <span
-                                                            class="text-muted font-12">{{ $reply->created_at->toDayDateTimeString() }}</span></a>
+                                                            class="text-muted font-12">{{ $reply->created_at->format($global->date_format .' '.$global->time_format) }}</span></a>
                                             </h4>
 
                                             <div class="font-light">

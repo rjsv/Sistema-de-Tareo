@@ -248,7 +248,7 @@ class MemberClientsController extends MemberBaseController
             ->editColumn(
                 'created_at',
                 function ($row) {
-                    return Carbon::parse($row->created_at)->format('d F, Y');
+                    return Carbon::parse($row->created_at)->format($this->global->date_format);
                 }
             )
             ->rawColumns(['name', 'action'])

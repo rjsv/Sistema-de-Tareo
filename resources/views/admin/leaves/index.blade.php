@@ -79,7 +79,7 @@
                         <ul class="list-task list-group" data-role="tasklist">
                             @forelse($pendingLeaves as $key=>$pendingLeave)
                                 <li class="list-group-item" data-role="task">
-                                    {{ ($key+1) }}. <strong>{{ ucwords($pendingLeave->user->name) }}</strong> for {{ $pendingLeave->leave_date->format('d M, Y') }}
+                                    {{ ($key+1) }}. <strong>{{ ucwords($pendingLeave->user->name) }}</strong> for {{ $pendingLeave->leave_date->format($global->date_format) }}
                                     <br>
                                     <strong>Reason: </strong>{{ $pendingLeave->reason }}
                                     <br>

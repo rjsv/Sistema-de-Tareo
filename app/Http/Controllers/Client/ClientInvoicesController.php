@@ -47,7 +47,7 @@ class ClientInvoicesController extends ClientBaseController
                 return $row->currency_symbol.' ('.$row->currency_code.')';
             })
             ->editColumn('issue_date', function($row){
-                return $row->issue_date->format('d M, Y');
+                return $row->issue_date->format($this->global->date_format);
             })
             ->editColumn('status', function ($row) {
                 if($row->status == 'unpaid'){

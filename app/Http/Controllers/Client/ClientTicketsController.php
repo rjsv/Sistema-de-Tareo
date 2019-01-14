@@ -105,8 +105,8 @@ class ClientTicketsController extends ClientBaseController
         $reply->ticket_id = $id;
         $reply->user_id = $this->user->id; //current logged in user
         $reply->save();
-
-        $lastMessage = view('client.tickets.last-message', compact('reply'))->render();
+        $this->reply = $reply;
+        $lastMessage = view('client.tickets.last-message', $this->data)->render();
 
         return Reply::successWithData(__('messages.ticketReplySuccess'), ['lastMessage' => $lastMessage]);
     }
@@ -151,10 +151,10 @@ class ClientTicketsController extends ClientBaseController
                 }
             })
             ->editColumn('created_at', function ($row) {
-                return $row->created_at->format('d M Y H:i');
+                return $row->created_at->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->editColumn('updated_at', function ($row) {
-                return $row->updated_at->format('d M Y H:i');
+                return $row->updated_at->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->rawColumns(['action', 'status'])
             ->removeColumn('user_id')

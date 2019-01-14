@@ -225,39 +225,41 @@
 
                                                             <dt>@lang('modules.client.clientEmail')</dt>
                                                             <dd class="m-b-10">{{ $project->client->email }}</dd>
-
-                                                                {{--Custom fields data--}}
-                                                                @if(isset($fields))
-                                                                    @foreach($fields as $field)
-                                                                        <dt>{{ ucfirst($field->label) }}</dt>
-                                                                        <dd class="m-b-10">
-                                                                            @if( $field->type == 'text')
-                                                                                {{$project->custom_fields_data['field_'.$field->id] or '-'}}
-                                                                            @elseif($field->type == 'password')
-                                                                                {{$project->custom_fields_data['field_'.$field->id] or '-'}}
-                                                                            @elseif($field->type == 'number')
-                                                                                {{$project->custom_fields_data['field_'.$field->id] or '-'}}
-
-                                                                            @elseif($field->type == 'textarea')
-                                                                                {{$project->custom_fields_data['field_'.$field->id] or '-'}}
-                                                                            @elseif($field->type == 'radio')
-                                                                                {{ !is_null($project->custom_fields_data['field_'.$field->id]) ? $project->custom_fields_data['field_'.$field->id] : '-' }}
-                                                                            @elseif($field->type == 'select')
-                                                                                {{ (!is_null($project->custom_fields_data['field_'.$field->id]) || $project->custom_fields_data['field_'.$field->id] != '') ? $field->values[$project->custom_fields_data['field_'.$field->id]] : '-' }}
-                                                                            @elseif($field->type == 'checkbox')
-                                                                                {{ !is_null($project->custom_fields_data['field_'.$field->id]) ? $field->values[$project->custom_fields_data['field_'.$field->id]] : '-' }}
-                                                                            @elseif($field->type == 'date')
-                                                                                {{ isset($project->dob)?Carbon\Carbon::parse($project->dob)->format('Y-m-d'):Carbon\Carbon::now()->format('m/d/Y')}}
-                                                                            @endif
-                                                                        </dd>
-                                                                    @endforeach
-                                                                @endif
-
-                                                                {{--custom fields data end--}}
                                                         </dl>
                                                         @else
                                                             @lang('messages.noClientAddedToProject')
                                                         @endif
+
+                                                        {{--Custom fields data--}}
+                                                        @if(isset($fields))
+                                                            <dl>
+                                                            @foreach($fields as $field)
+                                                                <dt>{{ ucfirst($field->label) }}</dt>
+                                                                <dd class="m-b-10">
+                                                                    @if( $field->type == 'text')
+                                                                        {{$project->custom_fields_data['field_'.$field->id] or '-'}}
+                                                                    @elseif($field->type == 'password')
+                                                                        {{$project->custom_fields_data['field_'.$field->id] or '-'}}
+                                                                    @elseif($field->type == 'number')
+                                                                        {{$project->custom_fields_data['field_'.$field->id] or '-'}}
+
+                                                                    @elseif($field->type == 'textarea')
+                                                                        {{$project->custom_fields_data['field_'.$field->id] or '-'}}
+                                                                    @elseif($field->type == 'radio')
+                                                                        {{ !is_null($project->custom_fields_data['field_'.$field->id]) ? $project->custom_fields_data['field_'.$field->id] : '-' }}
+                                                                    @elseif($field->type == 'select')
+                                                                        {{ (!is_null($project->custom_fields_data['field_'.$field->id]) || $project->custom_fields_data['field_'.$field->id] != '') ? $field->values[$project->custom_fields_data['field_'.$field->id]] : '-' }}
+                                                                    @elseif($field->type == 'checkbox')
+                                                                        {{ !is_null($project->custom_fields_data['field_'.$field->id]) ? $field->values[$project->custom_fields_data['field_'.$field->id]] : '-' }}
+                                                                    @elseif($field->type == 'date')
+                                                                        {{ isset($project->dob)?Carbon\Carbon::parse($project->dob)->format('Y-m-d'):Carbon\Carbon::now()->format('m/d/Y')}}
+                                                                    @endif
+                                                                </dd>
+                                                            @endforeach
+                                                            </dl>
+                                                        @endif
+
+                                                        {{--custom fields data end--}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -330,7 +332,7 @@
                                                         <ul class="list-task list-group" data-role="tasklist">
                                                             @forelse($recentFiles as $key=>$file)
                                                                 <li class="list-group-item" data-role="task">
-                                                                    {{ ($key+1) }}. {{ $file->filename }} <a target="_blank" href="{{ asset('user-uploads/project-files/'.$project->id.'/'.$file->filename) }}" class="btn btn-info btn-circle"><i class="fa fa-search"></i></a>
+                                                                    {{ ($key+1) }}. {{ $file->filename }} <a target="_blank" href="{{ asset('user-uploads/project-files/'.$project->id.'/'.$file->hashname) }}" class="btn btn-info btn-circle"><i class="fa fa-search"></i></a>
                                                                 </li>
                                                             @empty
                                                                 <li class="list-group-item" data-role="task">

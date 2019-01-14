@@ -226,8 +226,14 @@
                                                             <dt>@lang('modules.client.clientName')</dt>
                                                             <dd class="m-b-10">{{ ucwords($project->client->name) }}</dd>
                                                         </dl>
-                                                                {{--Custom fields data--}}
-                                                                @if(isset($fields))
+                                                            
+                                                        @else
+                                                            @lang('messages.noClientAddedToProject')
+                                                        @endif
+
+                                                            {{--Custom fields data--}}
+                                                            @if(isset($fields))
+                                                                <dl>
                                                                     @foreach($fields as $field)
                                                                         <dt>{{ ucfirst($field->label) }}</dt>
                                                                         <dd class="m-b-10">
@@ -251,12 +257,10 @@
                                                                             @endif
                                                                         </dd>
                                                                     @endforeach
-                                                                @endif
+                                                                </dl>
+                                                            @endif
 
-                                                                {{--custom fields data end--}}
-                                                        @else
-                                                            @lang('messages.noClientAddedToProject')
-                                                        @endif
+                                                            {{--custom fields data end--}}
                                                     </div>
                                                 </div>
                                             </div>

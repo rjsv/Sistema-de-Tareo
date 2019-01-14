@@ -12,6 +12,7 @@ class Holiday extends Model
     protected $fillable = [];
 
     protected $guarded = ['id'];
+    protected $dates = ['date'];
 
     public static function getHolidayByDates($startDate, $endDate){
 

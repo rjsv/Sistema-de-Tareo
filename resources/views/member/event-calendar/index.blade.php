@@ -295,42 +295,44 @@
     });
 
     function addEventModal(start, end, allDay){
-        if(start){
-            var sd = new Date(start);
-            var curr_date = sd.getDate();
-            if(curr_date < 10){
-                curr_date = '0'+curr_date;
-            }
-            var curr_month = sd.getMonth();
-            curr_month = curr_month+1;
-            if(curr_month < 10){
-                curr_month = '0'+curr_month;
-            }
-            var curr_year = sd.getFullYear();
+        @if($user->can('add_events'))
+            if(start){
+                var sd = new Date(start);
+                var curr_date = sd.getDate();
+                if(curr_date < 10){
+                    curr_date = '0'+curr_date;
+                }
+                var curr_month = sd.getMonth();
+                curr_month = curr_month+1;
+                if(curr_month < 10){
+                    curr_month = '0'+curr_month;
+                }
+                var curr_year = sd.getFullYear();
 
-            $('#start_date').val(curr_month+'/'+curr_date+'/'+curr_year);
+                $('#start_date').val(curr_month+'/'+curr_date+'/'+curr_year);
 
-            var ed = new Date(start);
-            var curr_date = sd.getDate();
-            if(curr_date < 10){
-                curr_date = '0'+curr_date;
+                var ed = new Date(start);
+                var curr_date = sd.getDate();
+                if(curr_date < 10){
+                    curr_date = '0'+curr_date;
+                }
+                var curr_month = sd.getMonth();
+                curr_month = curr_month+1;
+                if(curr_month < 10){
+                    curr_month = '0'+curr_month;
+                }
+                var curr_year = ed.getFullYear();
+                $('#end_date').val(curr_month+'/'+curr_date+'/'+curr_year);
+
+                $('#start_date, #end_date').datepicker('destroy');
+                jQuery('#start_date, #end_date').datepicker({
+                    autoclose: true,
+                    todayHighlight: true
+                })
             }
-            var curr_month = sd.getMonth();
-            curr_month = curr_month+1;
-            if(curr_month < 10){
-                curr_month = '0'+curr_month;
-            }
-            var curr_year = ed.getFullYear();
-            $('#end_date').val(curr_month+'/'+curr_date+'/'+curr_year);
 
-            $('#start_date, #end_date').datepicker('destroy');
-            jQuery('#start_date, #end_date').datepicker({
-                autoclose: true,
-                todayHighlight: true
-            })
-        }
-
-        $('#my-event').modal('show');
+            $('#my-event').modal('show');
+        @endif
 
     }
 

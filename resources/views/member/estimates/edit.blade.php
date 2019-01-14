@@ -492,6 +492,10 @@
 
     calculateTotal();
 
+    function decimalupto2(num) {
+        var amt =  Math.round(num * 100, 2) / 100;
+        return amt.toFixed(2);
+    }
 
 </script>
 @endpush

@@ -37,7 +37,7 @@
                                         <label>@lang('modules.attendance.clock_in') </label>
                                         <input type="text" name="clock_in_time"
                                                class="form-control a-timepicker"   autocomplete="off"   id="clock-in-{{ $row->id }}"
-                                               @if(!is_null($row->clock_in_time)) value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_in_time)->timezone($global->timezone)->format('h:i A') }}" @endif>
+                                               @if(!is_null($row->clock_in_time)) value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_in_time)->timezone($global->timezone)->format($global->time_format) }}" @endif>
                                     </div>
                                 </div>
 
@@ -69,7 +69,7 @@
                                         <label>@lang('modules.attendance.clock_out')</label>
                                         <input type="text" name="clock_out_time" id="clock-out-{{ $row->id }}"
                                                class="form-control b-timepicker"   autocomplete="off"
-                                               @if(!is_null($row->clock_out_time)) value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_out_time)->timezone($global->timezone)->format('h:i A') }}" @endif>
+                                               @if(!is_null($row->clock_out_time)) value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_out_time)->timezone($global->timezone)->format($global->time_format) }}" @endif>
                                     </div>
                                 </div>
 

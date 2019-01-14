@@ -44,7 +44,7 @@
                             <label>{{ ucwords(str_replace('_', '-', $leave->type_name)) }}</label>
                         </td>
                         <td>
-                            {{ $leave->leave_date->format('d M, Y') }}
+                            {{ $leave->leave_date->format($global->date_format) }}
                         </td>
                         <td>
                             {{ $leave->reason }}

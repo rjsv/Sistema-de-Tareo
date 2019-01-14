@@ -31,7 +31,6 @@ class ProposalController extends AdminBaseController
     }
 
     public function show($id) {
-
         $this->lead = Lead::where('id', $id)->first();
         return view('admin.proposals.show', $this->data);
     }
@@ -80,7 +79,7 @@ class ProposalController extends AdminBaseController
             ->editColumn(
                 'valid_till',
                 function ($row) {
-                    return Carbon::parse($row->valid_till)->format('d F, Y');
+                    return Carbon::parse($row->valid_till)->format($this->global->date_format);
                 }
             )
             ->rawColumns(['name', 'action', 'status'])

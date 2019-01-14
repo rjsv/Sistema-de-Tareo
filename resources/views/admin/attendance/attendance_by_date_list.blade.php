@@ -23,7 +23,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@lang('modules.attendance.clock_in')</label>
-                                        @if(!is_null($row->clock_in_time)) <span class="label label-success">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_in_time)->timezone($global->timezone)->format('h:i A') }} <i class="icon-check"></i></span> @else
+                                        @if(!is_null($row->clock_in_time)) <span class="label label-success">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_in_time)->timezone($global->timezone)->format($global->time_format) }} <i class="icon-check"></i></span> @else
                                             <label class="label label-danger">@lang('modules.attendance.absent')</label> @endif
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>@lang('modules.attendance.clock_out')</label>
-                                        @if(!is_null($row->clock_out_time)) <span class="label label-success">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_out_time)->timezone($global->timezone)->format('h:i A') }} <i class="icon-check"></i></span> @else -- @endif
+                                        @if(!is_null($row->clock_out_time)) <span class="label label-success">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->clock_out_time)->timezone($global->timezone)->format($global->time_format) }} <i class="icon-check"></i></span> @else -- @endif
                                     </div>
                                 </div>
 

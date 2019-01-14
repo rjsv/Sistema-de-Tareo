@@ -123,7 +123,7 @@
                                                                             alt="user" class="img-circle" width="30">' : '<img src="'.asset('default-profile-2.png').'"
                                                                             alt="user" class="img-circle" width="30">' !!}
 
-                                                    <label class="label label-inverse">{{ $task->due_date->format('d M, Y') }}</label>
+                                                    <label class="label label-inverse">{{ $task->due_date->format($global->date_format) }}</label>
                                                     <a href="javascript:;" class="btn btn-default btn-rounded btn-xs view-task" data-task-id="{{ $task->id }}"><i class="fa fa-eye"></i></a>
                                                 </div>
                                             </div>
@@ -139,7 +139,7 @@
                                                                             alt="user" class="img-circle" width="30">' : '<img src="'.asset('default-profile-2.png').'"
                                                                             alt="user" class="img-circle" width="30">' !!}
 
-                                                    <label class="label label-inverse">{{ $task->due_date->format('d M, Y') }}</label>
+                                                    <label class="label label-inverse">{{ $task->due_date->format($global->date_format) }}</label>
                                                     <a href="javascript:;" class="btn btn-default btn-rounded btn-xs view-task" data-task-id="{{ $task->id }}"><i class="fa fa-eye"></i></a>
                                                 </div>
                                             </div>

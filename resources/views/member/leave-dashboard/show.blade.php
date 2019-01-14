@@ -23,7 +23,7 @@
                 <div class="col-xs-12 ">
                     <div class="form-group">
                         <label>@lang('app.date')</label>
-                        <p>{{ $leave->leave_date->format('d M, Y') }} <label class="label label-{{ $leave->type->color }}">{{ ucwords($leave->type->type_name) }}</label></p>
+                        <p>{{ $leave->leave_date->format($global->date_format) }} <label class="label label-{{ $leave->type->color }}">{{ ucwords($leave->type->type_name) }}</label></p>
                     </div>
                 </div>
             </div>

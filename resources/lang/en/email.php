@@ -52,7 +52,7 @@ return array (
   array (
     'subject' => 'Task marked as complete',
   ),
-    'taskUpdate' =>
+  'taskUpdate' => 
   array (
     'subject' => 'Task updated',
   ),
@@ -62,8 +62,8 @@ return array (
     'reject' => 'Leave application rejected.',
     'applied' => 'Leave application applied.',
   ),
-    'newClientTask' =>
-        array (
-        'subject' => 'New Task Generated',
-    ),
+  'newClientTask' => 
+  array (
+    'subject' => 'New Task Generated',
+  ),
 );

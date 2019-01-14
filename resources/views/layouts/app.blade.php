@@ -108,11 +108,8 @@
             background: {{ $adminTheme->header_color }};
         }
         #side-menu li a {
-            color: {{ $adminTheme->sidebar_text_color }};
-        }
-        #side-menu li a {
-            color: {{ $adminTheme->sidebar_text_color }};
-            border-left: 0px solid {{ $adminTheme->sidebar_color }};
+            color: {{ $adminTheme->sidebar_text_color }} !important;
+            border-left: 0 solid {{ $adminTheme->sidebar_color }};
         }
         #side-menu > li > a:hover,
         #side-menu > li > a:focus {
@@ -266,7 +263,7 @@
                 <a class="logo hidden-xs hidden-sm text-center" href="{{ route('admin.dashboard') }}">
                     @if(is_null($global->logo))
                             <!--This is dark logo icon-->
-                    <img src="{{ asset('worksuite-logo.png') }}" alt="home" class=" admin-logo"/>
+                    <img src="{{ asset('Logo_OL.jpg') }}" alt="home" class=" admin-logo"/>
                     @else
                         <img src="{{ asset('user-uploads/app-logo/'.$global->logo) }}" alt="home" />
                     @endif
@@ -295,9 +292,9 @@
 
                 <li class="dropdown">
                     <select class="selectpicker language-switcher" data-width="fit">
-                        <option value="en" @if($global->locale == "en") selected @endif data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+                        <option value="en" @if($global->locale == "en") selected @endif data-content='<span class="flag-icon flag-icon-us"></span> En'>En</option>
                         @foreach($languageSettings as $language)
-                            <option value="{{ $language->language_code }}" @if($global->locale == $language->language_code) selected @endif  data-content='<span class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ $language->language_name }}'>{{ $language->language_name }}</option>
+                            <option value="{{ $language->language_code }}" @if($global->locale == $language->language_code) selected @endif  data-content='<span class="flag-icon flag-icon-{{ $language->language_code }}"></span> {{ $language->language_code }}'>{{ $language->language_code }}</option>
                         @endforeach
                     </select>
                 </li>
@@ -574,9 +571,9 @@
                 var token = "{{ csrf_token() }}";
 
                 $.easyAjax({
-                    type: 'DELETE',
+                    type: 'POST',
                     url: url,
-                    data: {'_token': token},
+                    data: {'_token': token, '_method': 'DELETE'},
                     success: function (response) {
                         $('#stickyBox_'+id).hide('slow');
                         $("#responsive-modal").modal('hide');

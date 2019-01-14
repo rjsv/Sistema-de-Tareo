@@ -93,7 +93,7 @@ class MemberExpensesController extends MemberBaseController
                 'purchase_date',
                 function ($row) {
                     if(!is_null($row->purchase_date)){
-                        return $row->purchase_date->timezone($this->global->timezone)->format('d M, Y');
+                        return $row->purchase_date->timezone($this->global->timezone)->format($this->global->date_format);
                     }
                 }
             )

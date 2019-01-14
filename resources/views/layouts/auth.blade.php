@@ -72,7 +72,7 @@
         <a href="javascript:void(0)"
            style="padding: 25px 0; @if($setting->active_theme == 'custom') background: #292929; @endif"
 
-           class="text-center db"><img src="{{ asset('worksuite-logo.png') }}" style="max-width: 240px" alt="Home" /></a>
+           class="text-center db"><img src="{{ asset('Logo_OL.jpg') }}" style="max-width: 240px" alt="Home" /></a>
         @else
             <a href="javascript:void(0)"
                style="padding: 25px 0; @if($setting->active_theme == 'custom') background: #292929; @endif"

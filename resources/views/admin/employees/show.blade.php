@@ -154,7 +154,7 @@
                             <p class="text-muted">{{ (count($employee->employee) > 0) ? '@'.$employee->employee[0]->slack_username : 'NA' }}</p>
                         </div>
                         <div class="col-md-6 col-xs-6"> <strong>@lang('modules.employees.joiningDate')</strong> <br>
-                            <p class="text-muted">{{ (count($employee->employee) > 0) ? $employee->employee[0]->joining_date->format('d M, Y') : 'NA' }}</p>
+                            <p class="text-muted">{{ (count($employee->employee) > 0) ? $employee->employee[0]->joining_date->format($global->date_format) : 'NA' }}</p>
                         </div>
                     </div>
                     <hr>
@@ -189,7 +189,7 @@
                                         @elseif($field->type == 'checkbox')
                                             {{ $field->values[$employeeDetail->custom_fields_data['field_'.$field->id]] }}
                                         @elseif($field->type == 'date')
-                                            {{ isset($employeeDetail->dob)?Carbon\Carbon::parse($employeeDetail->dob)->format('Y-m-d'):Carbon\Carbon::now()->format('m/d/Y')}}
+                                            {{ isset($employeeDetail->dob)?Carbon\Carbon::parse($employeeDetail->dob)->format($global->date_format):Carbon\Carbon::now()->format($global->date_format)}}
                                         @endif
                                     </p>
 
@@ -217,7 +217,7 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td><a href="{{ route('admin.projects.show', $project->id) }}">{{ ucwords($project->project_name) }}</a></td>
-                                    <td>{{ $project->deadline->format('d M, y') }}</td>
+                                    <td>{{ $project->deadline->format($global->date_format) }}</td>
                                     <td>
                                         <?php
 
@@ -306,7 +306,7 @@
                                             <label class="label label-{{ $leave->type->color }}">{{ ucwords($leave->type->type_name) }}</label>
                                         </td>
                                         <td>
-                                            {{ $leave->leave_date->format('d M, Y') }}
+                                            {{ $leave->leave_date->format($global->date_format) }}
                                         </td>
                                         <td>
                                             {{ $leave->reason }}

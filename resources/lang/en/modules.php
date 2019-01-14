@@ -37,6 +37,7 @@ return array (
     'createTitle' => 'Add Client Info',
     'companyDetails' => 'Company Details',
     'companyName' => 'Company Name',
+    'companySede' => 'Sede',
     'website' => 'Website',
     'address' => 'Address',
     'clientDetails' => 'Client Details',
@@ -94,7 +95,6 @@ return array (
     'gender' => 'Gender',
     'title' => 'Employee',
     'role' => 'Role',
-
   ),
   'projects' => 
   array (
@@ -159,7 +159,7 @@ return array (
     'taskCategory' => 'Task Category',
     'category' => 'Category',
   ),
-  'invoices' =>
+  'invoices' => 
   array (
     'addInvoice' => 'Add Invoice',
     'paid' => 'Paid',
@@ -770,11 +770,11 @@ return array (
     'project' => 'Project',
     'task' => 'Task',
   ),
-'taskCategory' =>
-    array (
-        'addTaskCategory' => 'Add Task Category',
-        'categoryName' => 'Category Name',
-        'manageTaskCategory' => 'Manage Task Category',
-        'taskCategory' => 'Task Category',
-    ),
+  'taskCategory' => 
+  array (
+    'addTaskCategory' => 'Add Task Category',
+    'categoryName' => 'Category Name',
+    'manageTaskCategory' => 'Manage Task Category',
+    'taskCategory' => 'Task Category',
+  ),
 );

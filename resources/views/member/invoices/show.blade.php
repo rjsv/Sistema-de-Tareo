@@ -112,11 +112,11 @@
                                     <p class="text-muted m-l-30">{!! nl2br($invoice->project->client->client[0]->address) !!}</p>
 
                                     <p class="m-t-30"><b>Invoice Date :</b> <i
-                                                class="fa fa-calendar"></i> {{ $invoice->issue_date->format("dS M Y") }}
+                                                class="fa fa-calendar"></i> {{ $invoice->issue_date->format($global->date_format) }}
                                     </p>
 
                                     <p><b>Due Date :</b> <i
-                                                class="fa fa-calendar"></i> {{ $invoice->due_date->format("dS M Y") }}
+                                                class="fa fa-calendar"></i> {{ $invoice->due_date->format($global->date_format) }}
                                     </p>
                                     @if($invoice->recurring == 'yes')
                                         <p><b class="text-danger">@lang('modules.invoices.billingFrequency') : </b> {{ $invoice->billing_interval . ' '. ucfirst($invoice->billing_frequency) }} ({{ ucfirst($invoice->billing_cycle) }} cycles)</p>

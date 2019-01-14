@@ -168,9 +168,9 @@
                                 </div>
                                 <div class="col-xs-6">
                                     @if(is_null($currenntClockIn))
-                                        {{ \Carbon\Carbon::now()->timezone($global->timezone)->format('h:i A') }}
+                                        {{ \Carbon\Carbon::now()->timezone($global->timezone)->format($global->time_format) }}
                                     @else
-                                        {{ $currenntClockIn->clock_in_time->timezone($global->timezone)->format('h:i A') }}
+                                        {{ $currenntClockIn->clock_in_time->timezone($global->timezone)->format($global->time_format) }}
                                     @endif
                                 </div>
                                 <div class="col-xs-6">
@@ -180,7 +180,7 @@
                                 @if(!is_null($currenntClockIn) && !is_null($currenntClockIn->clock_out_time))
                                     <div class="col-xs-6 m-t-20">
                                         <label for="">@lang('modules.attendance.clock_out')</label>
-                                        <br>{{ $currenntClockIn->clock_out_time->timezone($global->timezone)->format('h:i A') }}
+                                        <br>{{ $currenntClockIn->clock_out_time->timezone($global->timezone)->format($global->time_format) }}
                                     </div>
                                     <div class="col-xs-6 m-t-20">
                                         <label for="">@lang('modules.attendance.clock_out') IP</label>

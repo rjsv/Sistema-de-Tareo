@@ -94,6 +94,7 @@
                 <h2>@lang('app.menu.tasks')</h2>
 
                 <div class="row">
+                    @if($user->role[1]->role_id != 4)
                     <div class="col-sm-6">
                         <div class="form-group">
                             <a href="{{ route('admin.all-tasks.create') }}" class="btn btn-outline btn-success btn-sm">@lang('modules.tasks.newTask') <i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -102,6 +103,7 @@
 
                         </div>
                     </div>
+                    @endif
                     <div class="col-sm-6 text-right hidden-xs">
                         <div class="form-group">
                             <a href="javascript:;" onclick="exportData()" class="btn btn-info btn-sm"><i class="ti-export" aria-hidden="true"></i> @lang('app.exportExcel')</a>
@@ -115,8 +117,8 @@
                         <thead>
                         <tr>
                             <th>@lang('app.id')</th>
+                            <th>@lang('app.task')</th>
                             <th>@lang('app.project')</th>
-                            <th>@lang('app.title')</th>
                             <th>@lang('modules.tasks.assignTo')</th>
                             <th>@lang('app.dueDate')</th>
                             <th>@lang('app.status')</th>
@@ -263,8 +265,8 @@
             "order": [[0, "desc"]],
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'project_name', name: 'projects.project_name', width: '20%'},
                 {data: 'heading', name: 'heading', width: '20%'},
+                {data: 'project_name', name: 'projects.project_name', width: '20%'},
                 {data: 'name', name: 'users.name', width: '25%'},
                 {data: 'due_date', name: 'due_date'},
                 {data: 'status', name: 'status'},

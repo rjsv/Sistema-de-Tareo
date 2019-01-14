@@ -392,7 +392,7 @@ return array (
     'addGroup' => 'Adicionar grupo',
     'addTicket' => 'Criar Ticket',
     'addType' => 'Adicionar Tipo',
-    'agent' => 'Agente',
+    'agent' => 'Agentec',
     'agents' => 'Agentes',
     'applyTemplate' => 'Aplicar modelo',
     'assignGroup' => 'Atribuir Grupo',

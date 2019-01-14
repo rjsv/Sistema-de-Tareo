@@ -46,13 +46,23 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">@lang('modules.client.website')</label>
-                                        <input type="text" id="website" name="website" class="form-control" value="{{ $clientDetail->website or '' }}" >
+                                        <label class="control-label">@lang('modules.client.companySede')</label>
+                                        <input type="text" id="sede" name="sede" value="{{ $clientDetail->sede or '' }}" class="form-control" >
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
                             <!--/row-->
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label">@lang('modules.client.website')</label>
+                                        <input type="text" id="website" name="website" value="{{ $clientDetail->website or '' }}" class="form-control" >
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">

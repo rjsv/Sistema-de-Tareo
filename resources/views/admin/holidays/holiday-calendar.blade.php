@@ -63,6 +63,28 @@
         </div>
     </div>
     <!-- .row -->
+    {{--Ajax Modal--}}
+    <div class="modal fade bs-modal-md in" id="eventDetailModal" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md" id="modal-data-application">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <span class="caption-subject font-red-sunglo bold uppercase" id="modelHeading"></span>
+                </div>
+                <div class="modal-body">
+                    Loading...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn blue">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    {{--Ajax Modal Ends--}}
 
 @endsection
 
@@ -96,7 +118,13 @@
         },
         @endforeach
 ];
+    var getEventDetail = function (id) {
+        var url = '{{ route('admin.holidays.show', ':id')}}';
+        url = url.replace(':id', id);
 
+        $('#modelHeading').html('Event');
+        $.ajaxModal('#eventDetailModal', url);
+    }
     var calendarLocale = '{{ $global->locale }}';
 
 
@@ -133,24 +161,26 @@
     });
 
     function setMonthData(d){
+
         var month_int = d.getMonth();
         var year_int = d.getFullYear();
         var firstDay = new Date(year_int, month_int, 1);
-        var lastDay = new Date(year_int, month_int + 1, 0);
 
         firstDay = moment(firstDay).format("YYYY-MM-DD");
-        lastDay = moment(lastDay).format("YYYY-MM-DD");
 
-        var eventData = $('#calendar').fullCalendar('clientEvents', function(evt) {
-            return evt.start.format("YYYY-MM-DD") >= firstDay && evt.start.format("YYYY-MM-DD") <= lastDay;
-        });
         $('#currentMonthName').html(monthNames[d.getMonth()]);
-        currentMonthData = '';
-        $.each( eventData, function( key, value ) {
-            currentMonthData += '<tr> <td align="center">'+(key+1)+'</td> <td>'+value.start.format("DD-MM-YYYY")+'</td> <td>'+value.title()+'</td> </tr>';
-        });
 
-        $('#monthDetailData').html(currentMonthData);
+        var url = "{{ route('admin.holidays.calendar-month') }}?startDate="+firstDay;
+
+        var token = "{{ csrf_token() }}";
+
+        $.easyAjax({
+            type: 'GET',
+            url: url,
+            success: function (response) {
+                $('#monthDetailData').html(response.data);
+            }
+        });
     }
 </script>
 

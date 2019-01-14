@@ -156,7 +156,7 @@ class ManageNoticesController extends AdminBaseController
             ->editColumn(
                 'created_at',
                 function ($row) {
-                    return Carbon::parse($row->created_at)->format('d F, Y');
+                    return Carbon::parse($row->created_at)->format($this->global->date_format);
                 }
             )
             ->make(true);

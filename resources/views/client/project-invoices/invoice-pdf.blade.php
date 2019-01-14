@@ -285,7 +285,7 @@
 
         <div id="invoice">
             <h1>@lang('app.invoice') #{{ $invoice->invoice_number }}</h1>
-            <div class="date">Date: {{ $invoice->issue_date->format("dS M Y") }}</div>
+            <div class="date">Date: {{ $invoice->issue_date->format($global->date_format) }}</div>
         </div>
 
     </div>

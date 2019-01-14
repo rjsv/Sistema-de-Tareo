@@ -71,7 +71,7 @@
                                     @elseif($field->type == 'checkbox')
                                         {{ $field->values[$clientDetail->custom_fields_data['field_'.$field->id]] }}
                                     @elseif($field->type == 'date')
-                                        {{ isset($clientDetail->dob)?Carbon\Carbon::parse($clientDetail->dob)->format('Y-m-d'):Carbon\Carbon::now()->format('m/d/Y')}}
+                                        {{ isset($clientDetail->dob)?Carbon\Carbon::parse($clientDetail->dob)->format($global->date_format):Carbon\Carbon::now()->format($global->date_format)}}
                                     @endif
                                 </p>
 
@@ -123,8 +123,8 @@
                                                     <tr>
                                                         <td>{{ $key+1 }}</td>
                                                         <td>{{ ucwords($project->project_name) }}</td>
-                                                        <td>{{ $project->start_date->format('d M, y') }}</td>
-                                                        <td>{{ $project->deadline->format('d M, y') }}</td>
+                                                        <td>{{ $project->start_date->format($global->date_format) }}</td>
+                                                        <td>{{ $project->deadline->format($global->date_format) }}</td>
                                                         <td><a href="{{ route('admin.projects.show', $project->id) }}" class="label label-info">@lang('modules.client.viewDetails')</a></td>
                                                     </tr>
                                                 @empty

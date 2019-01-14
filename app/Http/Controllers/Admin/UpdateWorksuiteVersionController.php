@@ -111,6 +111,20 @@ class UpdateWorksuiteVersionController extends Controller
     */
     public function download(Request $request)
     {
+        $legalFile = storage_path().'/legal';
+        if(file_exists($legalFile)) {
+            $legalFileInfo = File::get($legalFile);
+
+            $legalFileInfo = explode('**', $legalFileInfo);
+            $domain = $legalFileInfo[0];
+            $purchaseCode = $legalFileInfo[1];
+
+            if($purchaseCode == 'froiden-dev'){
+                File::delete($legalFile);
+            }
+        }
+
+
         File::put(public_path().'/percent-download.txt', '');
 
         $lastVersionInfo = $this->getLastVersion();

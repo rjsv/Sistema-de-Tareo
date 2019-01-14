@@ -21,7 +21,7 @@ class IncomeVsExpenseReportController extends AdminBaseController
     }
 
     public function index() {
-        $this->fromDate = Carbon::today()->subDays(180);
+        $this->fromDate = Carbon::today()->subDays(30);
         $this->toDate = Carbon::today();
 
         $this->totalIncomes = $this->getTotalIncome($this->fromDate->format('Y-m-d'), $this->toDate->format('Y-m-d'));

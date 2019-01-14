@@ -125,7 +125,7 @@ class LeadController extends AdminBaseController
             })
             ->editColumn('next_follow_up_date', function($row) use($currentDate){
                 if($row->next_follow_up_date != null && $row->next_follow_up_date != ''){
-                    $date = Carbon::parse($row->next_follow_up_date)->format('d M, Y');
+                    $date = Carbon::parse($row->next_follow_up_date)->format($this->global->date_format);
                 }
                 else{
                     $date = '--';
@@ -137,7 +137,7 @@ class LeadController extends AdminBaseController
                 return $date;
             })
             ->editColumn('created_at', function($row){
-                return $row->created_at->format('d M, Y');
+                return $row->created_at->format($this->global->date_format);
             })
             ->removeColumn('status_id')
             ->removeColumn('client_id')

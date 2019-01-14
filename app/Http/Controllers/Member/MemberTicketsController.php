@@ -151,8 +151,8 @@ class MemberTicketsController extends MemberBaseController
         $reply->ticket_id = $id;
         $reply->user_id = $this->user->id; //current logged in user
         $reply->save();
-
-        $lastMessage = view('member.tickets.last-message', compact('reply'))->render();
+        $this->reply = $reply;
+        $lastMessage = view('member.tickets.last-message', $this->data)->render();
 
         return Reply::successWithData(__('messages.ticketReplySuccess'), ['lastMessage' => $lastMessage]);
     }
@@ -198,10 +198,10 @@ class MemberTicketsController extends MemberBaseController
                 }
             })
             ->editColumn('created_at', function($row){
-                return $row->created_at->format('d M Y H:i');
+                return $row->created_at->format($this->global->date_format);
             })
             ->editColumn('updated_at', function($row){
-                return $row->updated_at->format('d M Y H:i');
+                return $row->updated_at->format($this->global->date_format);
             })
             ->rawColumns(['action', 'status'])
             ->removeColumn('user_id')
@@ -319,7 +319,7 @@ class MemberTicketsController extends MemberBaseController
                 return ucwords($row->requester->name);
             })
             ->editColumn('created_at', function($row){
-                return $row->created_at->format('d M Y H:i');
+                return $row->created_at->format($this->global->date_format);
             })
             ->rawColumns(['others', 'action'])
             ->removeColumn('agent_id')
@@ -699,8 +699,8 @@ class MemberTicketsController extends MemberBaseController
                 }
 
             }
-
-            $lastMessage = view('member.tickets.last-message', compact('reply'))->render();
+            $this->reply = $reply;
+            $lastMessage = view('member.tickets.last-message', $this->data)->render();
         }
 
         return Reply::successWithData(__('messages.ticketReplySuccess'), ['lastMessage' => $lastMessage]);

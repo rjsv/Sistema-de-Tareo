@@ -12,7 +12,7 @@
                 </div>
             </div>
             <!--/span-->
-            @if(!is_null($task->project_id))
+            @if(!is_null($task->project))
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">@lang("app.project")</label>
@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="control-label">@lang('app.dueDate')</label>
-                    <p>  {{  $task->due_date->format('d-M-Y')  }} </p>
+                    <p>  {{  $task->due_date->format($global->date_format)  }} </p>
                 </div>
             </div>
             <!--/span-->

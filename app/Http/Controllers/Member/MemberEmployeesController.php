@@ -237,7 +237,7 @@ class MemberEmployeesController extends MemberBaseController
             ->editColumn(
                 'created_at',
                 function ($row) {
-                    return Carbon::parse($row->created_at)->format('d F, Y');
+                    return Carbon::parse($row->created_at)->format($this->global->date_format);
                 }
             )
             ->editColumn('name', function ($row) {
@@ -267,9 +267,9 @@ class MemberEmployeesController extends MemberBaseController
         return DataTables::of($tasks)
             ->editColumn('due_date', function ($row) {
                 if ($row->due_date->isPast()) {
-                    return '<span class="text-danger">' . $row->due_date->format('d M, y') . '</span>';
+                    return '<span class="text-danger">' . $row->due_date->format($this->global->date_format) . '</span>';
                 }
-                return '<span class="text-success">' . $row->due_date->format('d M, y') . '</span>';
+                return '<span class="text-success">' . $row->due_date->format($this->global->date_format) . '</span>';
             })
             ->editColumn('heading', function ($row) {
                 return ucfirst($row->heading);
@@ -296,11 +296,11 @@ class MemberEmployeesController extends MemberBaseController
 
         return DataTables::of($timeLogs)
             ->editColumn('start_time', function ($row) {
-                return $row->start_time->format('d M, Y h:i A');
+                return $row->start_time->format($this->global->date_format.' '.$this->global->time_format);
             })
             ->editColumn('end_time', function ($row) {
                 if (!is_null($row->end_time)) {
-                    return $row->end_time->format('d M, Y h:i A');
+                    return $row->end_time->format($this->global->date_format.' '.$this->global->time_format);
                 }
                 else {
                     return "<label class='label label-success'>Active</label>";

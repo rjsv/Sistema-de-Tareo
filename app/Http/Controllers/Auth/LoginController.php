@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if(!$this->isLegal()){
-            return redirect('verify-purchase');
+//            return redirect('verify-purchase');
         }
 
         $setting = Setting::first();
@@ -62,6 +62,9 @@ class LoginController extends Controller
     {
         $user = auth()->user();
         if($user->hasRole('admin')){
+            return 'admin/dashboard';
+        }
+        if($user->hasRole('planner')){
             return 'admin/dashboard';
         }
         elseif($user->hasRole('employee')){

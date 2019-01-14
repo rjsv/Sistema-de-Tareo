@@ -21,6 +21,7 @@ class CreateClientDetailsTable extends Migration
             $table->string('company_name')->nullable();
             $table->text('address')->nullable();
             $table->string('website')->nullable();
+            $table->string('sede')->nullable();
             $table->timestamps();
         });
     }

@@ -35,7 +35,10 @@
                             <label for="company_name">@lang('app.team')</label>
                             <input type="text" class="form-control" id="team_name" name="team_name">
                         </div>
-
+                        <div class="form-group">
+                            <label>@lang('app.menu.turn')</label>
+                            <input type="text" class="form-control">
+                        </div>
 
                         <button type="submit" id="save-form" class="btn btn-success waves-effect waves-light m-r-10">
                             @lang('app.save')
